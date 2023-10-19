@@ -32,6 +32,7 @@ async function run() {
         const database = client.db("productsDB");
         const productCollection = database.collection("product");
         const brandCollection = database.collection("brand");
+        const cartProductCollection = database.collection("cartProduct");
 
         // const brands=[
         //     {id:1 ,brandName:"Mercedes-Benz",photo:"https://i.ibb.co/FJJDGRv/55022df90a344617fa1246a942ec0169.png"},
@@ -128,6 +129,21 @@ async function run() {
             const id=req.params.id
             const query={_id: new ObjectId(id)}
             const result=await productCollection.findOne(query)
+            res.send(result)
+        })
+
+
+
+        app.post('/cartProducts',async(req,res)=>{
+            console.log(req.body)
+            const cartProduct=req.body
+            const result=await cartProductCollection.insertOne(cartProduct)
+            res.send(result)
+        })
+
+        app.get('/cartProducts', async (req,res)=>{
+            const cursor =cartProductCollection.find()
+            const result=await cursor.toArray()
             res.send(result)
         })
 
