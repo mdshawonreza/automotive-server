@@ -34,18 +34,7 @@ async function run() {
         const brandCollection = database.collection("brand");
         const cartProductCollection = database.collection("cartProduct");
 
-        // const brands=[
-        //     {id:1 ,brandName:"Mercedes-Benz",photo:"https://i.ibb.co/FJJDGRv/55022df90a344617fa1246a942ec0169.png"},
-
-        //     {id:2 ,brandName:"Ford",photo:"https://i.ibb.co/hRFsGQB/fordlogo.webp"},
-
-        //     {id:3 ,brandName:"BMW",photo:"https://i.ibb.co/N9YMn5z/bmwlogo.webp"},
-
-        //     {id:4 ,brandName: "Tesla",photo:"https://i.ibb.co/vQQ7JgY/images.jpg"},
-
-        //     {id:5 ,brandName: "Toyota",photo:"https://i.ibb.co/qWq3vLx/toyotalogo.webp"},
-        //     {id:6 ,brandName:"Mercedes-Benz",photo: "https://i.ibb.co/pwgsy2G/Honda-Motorcycle-Logo.webp"}
-        // ]
+        
 
         app.post('/products', async (req, res) => {
             const newProduct = req.body
@@ -57,23 +46,7 @@ async function run() {
 
 
         
-        // app.get('/products',async(req,res)=>{
-        //     productCollection.find({ brandName: brandName }, (err, products) => {
-        //         if (err) {
-        //           res.status(500).send('Error querying the database.');
-        //         } else {
-        //           res.send(products);
-        //         }
-        //       });
-        // })
-        // app.get('/products',async(req,res)=>{
-        //     const brandName=req.params.brand
-        //     console.log(brandName)
-        //      const  query = { brandName: brandName };
-        //     const cursor = productCollection.find();
-        //     const result= await cursor.toArray()
-        //     res.send(result)
-        // })
+       
         app.get('/products/brand', async (req, res) => {
             let products = {};
             if (req.query.brandId) {
@@ -85,18 +58,7 @@ async function run() {
             const result = await cursor.toArray()
             res.send(result);
         })
-        // app.get('/products/brand', async (req, res) => {
-        //     let products = {};
-        //     if (req.query.brandId) {
-        //         products = {
-        //             brandId: req.query.brandId
-        //         }
-        //     }
-        //     const cursor = productCollection.find(products);
-        //     const result = await cursor.toArray()
-        //     res.send(result);
-        // })
-
+        
         app.get('/brands',async(req,res)=>{
             const cursor = brandCollection.find();
             const result= await cursor.toArray()
